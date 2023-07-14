@@ -1,12 +1,21 @@
 import { useState } from "react";
 import data from "../Data";
 import "../App.css";
+
 const HomePage = () => {
   const [locations, setLocations] = useState(data);
+  const [locationList, setLocationList] = useState([]);
 
-  locations.forEach((location) => {
-    location.distanceToOfferRatio = location.distance / location.offer;
-  });
+  const handleClick = (offer) => {
+    const offerValue = offer.target.value;
+    const selectedLocation = locations.find(
+      (location) => location.offer === offerValue
+    );
+
+    if (selectedLocation) {
+      setLocationList((prevList) => [...prevList, selectedLocation]);
+    }
+  };
 
   return (
     <div>
@@ -23,15 +32,27 @@ const HomePage = () => {
           <tbody>
             {locations.map((location) => (
               <tr key={location.id}>
-                <button>
-                  <td>{location.distance} miles</td>
-                  <td>{location.offer}$</td>
-                </button>
+                <td>{location.id}</td>
+                <td>{location.distance} miles</td>
+                <td>
+                  <button value={location.offer} onClick={handleClick}>
+                    {location.offer}$
+                  </button>
+                </td>
+                <td>{location.distance / location.offer}</td>
               </tr>
             ))}
           </tbody>
         </table>
-        <input type="text" />
+        <div>
+          <ul>
+            {locationList.map((location) => (
+              <li key={location.id}>
+                {location.id} - {location.distance} miles - {location.offer}$
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </div>
   );

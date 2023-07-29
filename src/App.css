@@ -17,3 +17,8 @@
 .input {
   margin-top: 10px;
 }
+.bag {
+  padding: 8px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}

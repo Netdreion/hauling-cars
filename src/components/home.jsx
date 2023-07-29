@@ -5,16 +5,21 @@ import "../App.css";
 const HomePage = () => {
   const [locations, setLocations] = useState(data);
   const [locationList, setLocationList] = useState([]);
+  const [total, setTotal] = useState(0);
 
-  const handleClick = (offer) => {
-    const offerValue = offer.target.value;
-    const selectedLocation = locations.find(
-      (location) => location.offer === offerValue
-    );
+  const handleClick = (location) => {
+    const pickedLocation = [...locationList, location];
 
-    if (selectedLocation) {
-      setLocationList((prevList) => [...prevList, selectedLocation]);
-    }
+    setLocationList(pickedLocation);
+    totalOffer();
+  };
+
+  const totalOffer = () => {
+    let totalMoney = 0;
+    locationList.forEach((item) => {
+      totalMoney += item.offer;
+    });
+    setTotal(totalMoney);
   };
 
   return (
@@ -35,7 +40,10 @@ const HomePage = () => {
                 <td>{location.id}</td>
                 <td>{location.distance} miles</td>
                 <td>
-                  <button value={location.offer} onClick={handleClick}>
+                  <button
+                    value={location.offer}
+                    onClick={() => handleClick(location)}
+                  >
                     {location.offer}$
                   </button>
                 </td>
@@ -46,14 +54,15 @@ const HomePage = () => {
         </table>
         <div>
           <ul>
-            {locationList.map((location) => (
-              <li key={location.id}>
-                {location.id} - {location.distance} miles - {location.offer}$
+            {locationList.map((location, index) => (
+              <li key={index}>
+                {location.id} - {location.offer}${location.distance} miles
               </li>
             ))}
           </ul>
         </div>
       </div>
+      <div>{total}</div>
     </div>
   );
 };

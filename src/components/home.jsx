@@ -11,14 +11,16 @@ const HomePage = () => {
     const pickedLocation = [...locationList, location];
 
     setLocationList(pickedLocation);
-    totalOffer();
+    totalOffer(pickedLocation);
   };
 
-  const totalOffer = () => {
+  const totalOffer = (pickedLocation) => {
     let totalMoney = 0;
-    locationList.forEach((item) => {
-      totalMoney += item.offer;
-    });
+
+    for (let i = 0; i < pickedLocation.length; i++) {
+      totalMoney += pickedLocation[i].offer;
+    }
+
     setTotal(totalMoney);
   };
 
@@ -35,7 +37,7 @@ const HomePage = () => {
             </tr>
           </thead>
           <tbody>
-            {locations.map((location) => (
+            {data.map((location) => (
               <tr key={location.id}>
                 <td>{location.id}</td>
                 <td>{location.distance} miles</td>

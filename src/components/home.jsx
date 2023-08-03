@@ -55,10 +55,16 @@ const HomePage = () => {
           </tbody>
         </table>
         <div>
+          <tr>
+            <th>ID</th>
+            <th>Distance</th>
+            <th>Offer</th>
+            <th>Ratio</th>
+          </tr>
           <ul>
             {locationList.map((location, index) => (
               <li key={index}>
-                {location.id} - {location.offer}${location.distance} miles
+                {location.id} - {location.offer}-${location.distance} miles
               </li>
             ))}
           </ul>

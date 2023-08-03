@@ -22,3 +22,11 @@
   text-align: center;
   border-bottom: 1px solid #ddd;
 }
+
+.subTable {
+  width: 100%;
+  border-collapse: collapse;
+  padding: 8px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}

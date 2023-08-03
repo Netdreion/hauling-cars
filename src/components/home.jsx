@@ -54,13 +54,15 @@ const HomePage = () => {
             ))}
           </tbody>
         </table>
-        <div>
-          <tr>
-            <th>ID</th>
-            <th>Distance</th>
-            <th>Offer</th>
-            <th>Ratio</th>
-          </tr>
+        <div className="subTable">
+          <table>
+            <tr>
+              <th>ID</th>
+              <th>Distance</th>
+              <th>Offer</th>
+              <th>Ratio</th>
+            </tr>
+          </table>
           <ul>
             {locationList.map((location, index) => (
               <li key={index}>

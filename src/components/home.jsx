@@ -63,13 +63,17 @@ const HomePage = () => {
               <th className="header-cell">Ratio</th>
             </tr>
           </table>
-          <ul>
-            {locationList.map((location, index) => (
-              <li key={index} className="bag">
-                {location.id} - {location.offer}-${location.distance} miles
-              </li>
-            ))}
-          </ul>
+          {locationList.length <= 3 ? (
+            <ul>
+              {locationList.map((location, index) => (
+                <li key={index} className="bag">
+                  {location.id} - {location.offer}-${location.distance} miles
+                </li>
+              ))}
+            </ul>
+          ) : (
+            "please add"
+          )}
         </div>
       </div>
       <div>{total}</div>

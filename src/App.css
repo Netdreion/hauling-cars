@@ -1,32 +1,68 @@
+/* HomePage.css */
+
+/* Table Styles */
 .table {
   width: 100%;
   border-collapse: collapse;
+  margin-bottom: 20px;
 }
 
 .table th,
 .table td {
   padding: 8px;
-  text-align: center;
+  text-align: left;
   border-bottom: 1px solid #ddd;
 }
 
-.table th {
-  background-color: #111223;
+.header-cell {
+  background-color: #f2f2f2;
+  font-weight: bold;
 }
 
-.input {
-  margin-top: 10px;
-}
-.bag {
-  padding: 8px;
-  text-align: center;
-  border-bottom: 1px solid #ddd;
+/* Button Style */
+table button {
+  padding: 5px 10px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  cursor: pointer;
 }
 
+table button:hover {
+  background-color: #45a049;
+}
+
+/* Sub-table Styles */
 .subTable {
   width: 100%;
   border-collapse: collapse;
   padding: 8px;
   text-align: center;
   border-bottom: 1px solid #ddd;
+}
+
+.subTable th,
+.subTable td {
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+}
+
+/* List Styles */
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.bag {
+  padding: 8px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Total Styles */
+div {
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 20px;
 }

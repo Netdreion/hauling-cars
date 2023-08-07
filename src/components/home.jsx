@@ -57,15 +57,15 @@ const HomePage = () => {
         <div className="subTable">
           <table>
             <tr>
-              <th>ID</th>
-              <th>Distance</th>
-              <th>Offer</th>
-              <th>Ratio</th>
+              <th className="header-cell">ID</th>
+              <th className="header-cell">Distance</th>
+              <th className="header-cell">Offer</th>
+              <th className="header-cell">Ratio</th>
             </tr>
           </table>
           <ul>
             {locationList.map((location, index) => (
-              <li key={index}>
+              <li key={index} className="bag">
                 {location.id} - {location.offer}-${location.distance} miles
               </li>
             ))}

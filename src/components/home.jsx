@@ -57,10 +57,10 @@ const HomePage = () => {
         <div className="subTable">
           <table>
             <tr>
-              <th className="header-cell">ID</th>
-              <th className="header-cell">Distance</th>
-              <th className="header-cell">Offer</th>
-              <th className="header-cell">Ratio</th>
+              {data.map((data) => {
+                const { id, distance, offer } = data;
+                return <th key={id}>{data.id}</th>;
+              })}
             </tr>
           </table>
           {locationList.length <= 3 ? (

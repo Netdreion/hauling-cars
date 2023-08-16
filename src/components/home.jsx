@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import data from "../Data";
 import "../App.css";
 
@@ -14,15 +14,17 @@ const HomePage = () => {
     totalOffer(pickedLocation);
   };
 
-  const totalOffer = (pickedLocation) => {
-    let totalMoney = 0;
+  useEffect(() => {
+    const totalOffer = (pickedLocation) => {
+      let totalMoney = 0;
 
-    for (let i = 0; i < pickedLocation.length; i++) {
-      totalMoney += pickedLocation[i].offer;
-    }
+      for (let i = 0; i < pickedLocation.length; i++) {
+        totalMoney += pickedLocation[i].offer;
+      }
 
-    setTotal(totalMoney);
-  };
+      setTotal(totalMoney);
+    };
+  }, [total]);
 
   return (
     <div>
@@ -59,7 +61,7 @@ const HomePage = () => {
             <tr>
               {data.map((data) => {
                 const { id, distance, offer } = data;
-                return <th key={id}>{data.id}</th>;
+                return <th key={id}> </th>;
               })}
             </tr>
           </table>

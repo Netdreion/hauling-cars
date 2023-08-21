@@ -11,20 +11,24 @@ const HomePage = () => {
     const pickedLocation = [...locationList, location];
 
     setLocationList(pickedLocation);
+
+    if (pickedLocation.lenght <= 3) {
+      setLocationList(pickedLocation);
+    } else {
+      setLocations(null);
+    }
+
     totalOffer(pickedLocation);
   };
+  const totalOffer = (pickedLocation) => {
+    let totalMoney = 0;
 
-  useEffect(() => {
-    const totalOffer = (pickedLocation) => {
-      let totalMoney = 0;
+    for (let i = 0; i < pickedLocation.length; i++) {
+      totalMoney += pickedLocation[i].offer;
+    }
 
-      for (let i = 0; i < pickedLocation.length; i++) {
-        totalMoney += pickedLocation[i].offer;
-      }
-
-      setTotal(totalMoney);
-    };
-  }, [total]);
+    setTotal(totalMoney);
+  };
 
   return (
     <div>

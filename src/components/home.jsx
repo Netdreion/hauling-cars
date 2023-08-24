@@ -26,6 +26,14 @@ const HomePage = () => {
     for (let i = 0; i < pickedLocation.length; i++) {
       totalMoney += pickedLocation[i].offer;
     }
+    if (pickedLocation.length > 3) {
+      return (
+        <div>
+          {" "}
+          <p>total location reached</p>
+        </div>
+      );
+    }
 
     setTotal(totalMoney);
   };

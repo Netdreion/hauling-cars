@@ -38,6 +38,11 @@ const HomePage = () => {
     setTotal(totalMoney);
   };
 
+  const startOver = () => {
+    setLocationList([]);
+    setTotal(0);
+  };
+
   return (
     <div>
       <div>
@@ -90,7 +95,11 @@ const HomePage = () => {
           )}
         </div>
       </div>
-      <div>{total}</div>
+      <div>{total}$</div>
+      <button onClick={() => startOver()}>
+        {" "}
+        {total != 0 ? "Start Over" : ""}
+      </button>
     </div>
   );
 };

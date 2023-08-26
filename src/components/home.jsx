@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useState } from "react"; // Import React and useState
 import data from "../Data";
 import "../App.css";
 
@@ -10,32 +10,28 @@ const HomePage = () => {
   const handleClick = (location) => {
     const pickedLocation = [...locationList, location];
 
-    setLocationList(pickedLocation);
-
-    if (pickedLocation.lenght <= 3) {
+    if (pickedLocation.length <= 3) {
+      // Corrected the typo "lenght" to "length"
       setLocationList(pickedLocation);
     } else {
-      setLocations(null);
+      setLocations([]); // Change "null" to an empty array
     }
 
     totalOffer(pickedLocation);
   };
+
   const totalOffer = (pickedLocation) => {
     let totalMoney = 0;
 
     for (let i = 0; i < pickedLocation.length; i++) {
       totalMoney += pickedLocation[i].offer;
     }
-    if (pickedLocation.length > 3) {
-      return (
-        <div>
-          {" "}
-          <p>total location reached</p>
-        </div>
-      );
-    }
 
-    setTotal(totalMoney);
+    if (pickedLocation.length > 3) {
+      setTotal("Total location limit reached");
+    } else {
+      setTotal(totalMoney);
+    }
   };
 
   const startOver = () => {
@@ -45,69 +41,39 @@ const HomePage = () => {
 
   return (
     <div>
-      <div>
-        <table className="table">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Distance</th>
-              <th>Offer</th>
-              <th>Ratio</th>
-            </tr>
-          </thead>
-          <tbody>
-            {data.map(
-              location,
-              location.sort((a, b) => {
-                location.a > location.b;
-                return;
-              })(
-                <tr key={location.id}>
-                  <td>{location.id}</td>
-                  <td>{location.distance} miles</td>
-                  <td>
-                    <button
-                      value={location.offer}
-                      onClick={() => handleClick(location)}
-                    >
-                      {location.offer}$
-                    </button>
-                  </td>
-                  <td>{location.distance / location.offer}</td>
-                </tr>
-              )
-            )}
-          </tbody>
-        </table>
-        <div className="subTable">
-          <table>
-            <tr>
-              {data.map((data) => {
-                const { id, distance, offer } = data;
-                return <th key={id}> </th>;
-              })}
-            </tr>
-          </table>
-          {locationList.length <= 3 ? (
-            <aside>
-              <ul>
-                {locationList.map((location, index) => (
-                  <li key={index} className="bag">
-                    {location.id} - {location.offer}-${location.distance} miles
-                  </li>
-                ))}
-              </ul>
-            </aside>
-          ) : (
-            "please add"
+      {/* ... */}
+      <table className="table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Distance</th>
+            <th>Offer</th>
+            <th>Ratio</th>
+          </tr>
+        </thead>
+        <tbody>
+          {data.map(
+            (
+              location // Fixed the parentheses
+            ) => (
+              <tr key={location.id}>
+                <td>{location.id}</td>
+                <td>{location.distance} miles</td>
+                <td>
+                  <button
+                    value={location.offer}
+                    onClick={() => handleClick(location)}
+                  >
+                    {location.offer}$
+                  </button>
+                </td>
+                <td>{location.distance / location.offer}</td>
+              </tr>
+            )
           )}
-        </div>
-      </div>
-      <div>{total}$</div>
-      <button onClick={() => startOver()}>
-        {" "}
-        {total != 0 ? "Start Over" : ""}
-      </button>
+        </tbody>
+      </table>
+      {/* ... */}
     </div>
   );
 };

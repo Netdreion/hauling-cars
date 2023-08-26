@@ -56,21 +56,27 @@ const HomePage = () => {
             </tr>
           </thead>
           <tbody>
-            {data.map((location) => (
-              <tr key={location.id}>
-                <td>{location.id}</td>
-                <td>{location.distance} miles</td>
-                <td>
-                  <button
-                    value={location.offer}
-                    onClick={() => handleClick(location)}
-                  >
-                    {location.offer}$
-                  </button>
-                </td>
-                <td>{location.distance / location.offer}</td>
-              </tr>
-            ))}
+            {data.map(
+              location,
+              location.sort((a, b) => {
+                location.a > location.b;
+                return;
+              })(
+                <tr key={location.id}>
+                  <td>{location.id}</td>
+                  <td>{location.distance} miles</td>
+                  <td>
+                    <button
+                      value={location.offer}
+                      onClick={() => handleClick(location)}
+                    >
+                      {location.offer}$
+                    </button>
+                  </td>
+                  <td>{location.distance / location.offer}</td>
+                </tr>
+              )
+            )}
           </tbody>
         </table>
         <div className="subTable">
@@ -83,13 +89,15 @@ const HomePage = () => {
             </tr>
           </table>
           {locationList.length <= 3 ? (
-            <ul>
-              {locationList.map((location, index) => (
-                <li key={index} className="bag">
-                  {location.id} - {location.offer}-${location.distance} miles
-                </li>
-              ))}
-            </ul>
+            <aside>
+              <ul>
+                {locationList.map((location, index) => (
+                  <li key={index} className="bag">
+                    {location.id} - {location.offer}-${location.distance} miles
+                  </li>
+                ))}
+              </ul>
+            </aside>
           ) : (
             "please add"
           )}

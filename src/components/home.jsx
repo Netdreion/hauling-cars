@@ -11,51 +11,46 @@ const HomePage = () => {
     const pickedLocation = [...locationList, location];
 
     if (pickedLocation.length <= 3) {
-      // Corrected the typo "lenght" to "length"
       setLocationList(pickedLocation);
     } else {
-      setLocations([]); // Change "null" to an empty array
+      setLocations([]);
+
+      totalOffer(pickedLocation);
     }
 
-    totalOffer(pickedLocation);
-  };
+    const totalOffer = (pickedLocation) => {
+      let totalMoney = 0;
 
-  const totalOffer = (pickedLocation) => {
-    let totalMoney = 0;
+      for (let i = 0; i < pickedLocation.length; i++) {
+        totalMoney += pickedLocation[i].offer;
+      }
 
-    for (let i = 0; i < pickedLocation.length; i++) {
-      totalMoney += pickedLocation[i].offer;
-    }
+      if (pickedLocation.length > 3) {
+        setTotal("Total location limit reached");
+      } else {
+        setTotal(totalMoney);
+      }
+    };
 
-    if (pickedLocation.length > 3) {
-      setTotal("Total location limit reached");
-    } else {
-      setTotal(totalMoney);
-    }
-  };
+    const startOver = () => {
+      setLocationList([]);
+      setTotal(0);
+    };
 
-  const startOver = () => {
-    setLocationList([]);
-    setTotal(0);
-  };
-
-  return (
-    <div>
-      {/* ... */}
-      <table className="table">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Distance</th>
-            <th>Offer</th>
-            <th>Ratio</th>
-          </tr>
-        </thead>
-        <tbody>
-          {data.map(
-            (
-              location // Fixed the parentheses
-            ) => (
+    return (
+      <div>
+        {/* ... */}
+        <table className="table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Distance</th>
+              <th>Offer</th>
+              <th>Ratio</th>
+            </tr>
+          </thead>
+          <tbody>
+            {data.map((location) => (
               <tr key={location.id}>
                 <td>{location.id}</td>
                 <td>{location.distance} miles</td>
@@ -69,13 +64,13 @@ const HomePage = () => {
                 </td>
                 <td>{location.distance / location.offer}</td>
               </tr>
-            )
-          )}
-        </tbody>
-      </table>
-      {/* ... */}
-    </div>
-  );
+            ))}
+          </tbody>
+        </table>
+        {/* ... */}
+      </div>
+    );
+  };
 };
 
 export default HomePage;

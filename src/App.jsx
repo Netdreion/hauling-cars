@@ -13,7 +13,6 @@ function App() {
   return (
     <>
       <HomePage />
-
       <BestChoice
         key={bestOffer.id}
         id={bestOffer.id}

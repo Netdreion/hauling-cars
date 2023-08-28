@@ -68,7 +68,15 @@ const HomePage = () => {
           ))}
         </tbody>
       </table>
-      {/* ... */}
+      <div>
+        <ul>
+          {locationList.map((location) => {
+            return (
+              <li key={location.id}>{location.offer / location.distance}</li>
+            );
+          })}
+        </ul>
+      </div>
     </div>
   );
 };
